@@ -1,25 +1,9 @@
 const router = require('express').Router();
 
-const apiRoutes = require('./api');
+const apiRoutes = require('./api/');
+const homeRoutes = require('./home-routes.js');
 
+router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
-
-router.use((req, res) => {
-    res.status(404).end();
-});
-
-router.get('/', (req, res) => {
-    res.render('homepage', {
-        id: 1,
-        post_url: 'https://handlebarsjs.com/guide/',
-        title: 'Handlebars Docs',
-        created_at: new Date(),
-        vote_count: 10,
-        comments: [{}, {}],
-        user: {
-            username: 'test_user'
-        }
-    });
-});
 
 module.exports = router;
